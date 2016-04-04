@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6dz-qa-GHT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Entry List View Controller-->
         <scene sceneID="DbR-nb-yr5">
             <objects>
-                <viewController id="Kzl-L7-1Rq" sceneMemberID="viewController">
+                <viewController id="Kzl-L7-1Rq" customClass="EntryListViewController" customModule="Journal_Redo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qRQ-Lt-FN8"/>
                         <viewControllerLayoutGuide type="bottom" id="iGF-BJ-Ldi"/>
@@ -25,15 +25,24 @@
                                     <constraint firstAttribute="height" constant="280" id="j2n-B4-Q7H"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="olv-Ce-g13">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="entryCell" textLabel="bHe-Lq-6ES" style="IBUITableViewCellStyleDefault" id="olv-Ce-g13">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="olv-Ce-g13" id="TfM-4q-HHE">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bHe-Lq-6ES">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="AmL-VE-Tre" kind="show" id="gzK-Ex-0Mx"/>
+                                            <segue destination="AmL-VE-Tre" kind="show" identifier="toDetailEntry" id="gzK-Ex-0Mx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -42,14 +51,13 @@
                                     <outlet property="delegate" destination="Kzl-L7-1Rq" id="YeI-M4-7tW"/>
                                 </connections>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="239" horizontalCompressionResistancePriority="720" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lot-7b-zfh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="239" horizontalCompressionResistancePriority="720" text="Enter your note here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lot-7b-zfh">
                                 <rect key="frame" x="20" y="72" width="560" height="165"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="1G3-yE-obJ"/>
                                     <constraint firstAttribute="height" constant="165" id="n2j-Bq-fqd"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
@@ -83,6 +91,9 @@
                                                 <exclude reference="wtz-IQ-aP8"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="addImageButtonPressed:" destination="Kzl-L7-1Rq" eventType="touchUpInside" id="gsM-cy-ZpU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-EL-C6J">
                                         <rect key="frame" x="188" y="0.0" width="184" height="85"/>
@@ -106,6 +117,9 @@
                                                 <exclude reference="bq4-7l-lXX"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="addImageButtonPressed:" destination="Kzl-L7-1Rq" eventType="touchUpInside" id="jMw-Cz-Sgn"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrX-0n-Mil">
                                         <rect key="frame" x="377" y="0.0" width="183" height="85"/>
@@ -127,6 +141,9 @@
                                                 <exclude reference="rpW-HB-I7s"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="addImageButtonPressed:" destination="Kzl-L7-1Rq" eventType="touchUpInside" id="L8H-6G-4gy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -170,8 +187,16 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ZmT-Ma-Xtb">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="EhW-qL-6BK"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="EhW-qL-6BK">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="Kzl-L7-1Rq" id="uoM-Fm-d3c"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="entryTextView" destination="Lot-7b-zfh" id="Jh9-IT-2I4"/>
+                        <outlet property="tableview" destination="abl-6m-6ap" id="0bK-8H-yIO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQU-5V-5Yw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
