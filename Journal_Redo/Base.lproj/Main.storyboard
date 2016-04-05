@@ -65,6 +65,9 @@
                                         <exclude reference="1G3-yE-obJ"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="Kzl-L7-1Rq" id="gAZ-V5-3Ee"/>
+                                </connections>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="z8q-Ta-nF4">
                                 <rect key="frame" x="20" y="236" width="560" height="85"/>

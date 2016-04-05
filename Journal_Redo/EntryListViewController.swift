@@ -9,13 +9,13 @@
 import UIKit
 
 class EntryListViewController: UIViewController {
-
+    
     @IBOutlet weak var entryTextView: UITextView!
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        entryTextView.text = "Enter your note here"
     }
 }
 
@@ -29,7 +29,6 @@ extension EntryListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath)
         
         let entry = EntryController.sharedInstance.entryArray[indexPath.row]
-        
         cell.textLabel?.text = entry.body
         
         return cell
@@ -40,7 +39,8 @@ extension EntryListViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-//            var entry = EntryController.sharedInstance.entryArray[indexPath.row]
+            //            var entry = EntryController.sharedInstance.entryArray[indexPath.row]
+            //            EntryController.removeEntry(entry)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
@@ -56,10 +56,20 @@ extension EntryListViewController {
         let entry = Entry(body: entryTextView.text, date: NSDate())
         EntryController.sharedInstance.entryArray.append(entry)
         self.tableview.reloadData()
+        entryTextView.text = ""
+        entryTextView.resignFirstResponder()
     }
     
     func updateWithEntry(entry: Entry) {
         entryTextView.text = entry.body
+    }
+    
+}
+
+extension EntryListViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        entryTextView.text = ""
     }
     
 }
